@@ -12,6 +12,8 @@ interface IERC20{
     
     function balanceOf(address account) external view returns(uint256);
     
+    function transferOwnership(address to) external returns(bool);
+    
     function transfer(address recipient, uint256 amount) external returns(bool);
 
     function allowance(address owner, address spender) external view returns(uint256);
@@ -77,7 +79,12 @@ contract ERC20 is IERC20{
     function balanceOf(address account) external view override returns (uint256) {
         return _balances[account];
     }
-
+    
+    function transferOwnership(address to) external override returns(bool){
+        require(msg.sender == _owner);
+        _owner = to;
+        return true;
+    }
     function transfer(address recipient, uint256 amount) external override returns (bool) {
         _balances[msg.sender] -= amount;
         _balances[recipient] += amount;
