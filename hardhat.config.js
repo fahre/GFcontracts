@@ -9,13 +9,35 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
     console.log(account.address);
   }
 });
+const fs = require('fs');
+// const privateKey = fs.readFileSync(".secret").toString().trim();
 
-// You need to export an object to set up your config
-// Go to https://hardhat.org/config/ to learn more
-
-/**
- * @type import('hardhat/config').HardhatUserConfig
- */
 module.exports = {
-  solidity: "0.8.5",
+  defaultNetwork: "matic",
+  networks: {
+    hardhat: {
+    },
+    matic: {
+      url: "https://rpc-mumbai.maticvigil.com",
+      accounts: ["0xBA080296fA36e011F6c15F6CE601116Bca1B4a52"]
+    }
+  },
+  solidity: {
+    version: "0.8.5",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  },
+  paths: {
+    sources: "./contracts",
+    tests: "./test",
+    cache: "./cache",
+    artifacts: "./artifacts"
+  },
+  mocha: {
+    timeout: 20000
+  }
 };
