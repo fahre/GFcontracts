@@ -23,6 +23,7 @@ async function main() {
   const market = await Market.deploy(erc20.address);
   const LockContract = await ethers.getContractFactory("lockContract");
   const lockContract = await LockContract.deploy(erc20.address);
+  console.log("NGL token deployed to:", erc20.address)
   console.log("NFT deployed to:", nft.address);
   console.log("Buffer deployed to:", buffer.address);
   console.log("Market deployed to:", market.address);
