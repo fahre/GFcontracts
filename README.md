@@ -4,12 +4,12 @@
 
 ## Deployed to testnet
 
-NGL token deployed to: [0xa4474DF54Ce8170C73e974Cec2B94505Aa6072CA](https://mumbai.polygonscan.com/address/0xa4474DF54Ce8170C73e974Cec2B94505Aa6072CA)
+NGL token deployed to: [0x1C4F87c2809811B535c5090f31a17c2dB9456917](https://mumbai.polygonscan.com/address/0x1C4F87c2809811B535c5090f31a17c2dB9456917)
 
-NFT deployed to: [0x200a6cC23c1B7C4B43792DEE510770d4496c1208](https://mumbai.polygonscan.com/address/0x200a6cC23c1B7C4B43792DEE510770d4496c1208)
+NFT deployed to: [0xB223Ea9089845c424B983dB7fBB1c1093dbB5409](https://mumbai.polygonscan.com/address/0xB223Ea9089845c424B983dB7fBB1c1093dbB5409)
 
-Buffer deployed to: [0xb7F774c2Bb649e24Ca9DeE921dEd70FdBFc29531](https://mumbai.polygonscan.com/address/0xb7F774c2Bb649e24Ca9DeE921dEd70FdBFc29531)
+Buffer deployed to: [0x5A3B5ca9Cf459178E071aCB8B264dC56BEf7664E](https://mumbai.polygonscan.com/address/0x5A3B5ca9Cf459178E071aCB8B264dC56BEf7664E)
 
-Market deployed to: [0xCFa28D448DFCF1eDD55186D8F5e027a61C1E0130](https://mumbai.polygonscan.com/address/0xCFa28D448DFCF1eDD55186D8F5e027a61C1E0130)
+Market deployed to: [0x5B738E22faEd163bc05f5dD294c2158cf1a55e6a](https://mumbai.polygonscan.com/address/0x5B738E22faEd163bc05f5dD294c2158cf1a55e6a)
 
-LockContract deployed to: [0x128f8F879AB905461f068bd871C46f41165d532f](https://mumbai.polygonscan.com/address/0x128f8F879AB905461f068bd871C46f41165d532f)
+LockContract deployed to: [0xC975F10C60340c96E76dE0f8ddeD233099365e4D](https://mumbai.polygonscan.com/address/0xC975F10C60340c96E76dE0f8ddeD233099365e4D)
