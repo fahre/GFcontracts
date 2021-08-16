@@ -15,7 +15,7 @@ interface INFT{
     function balanceOf(address user) external view returns(uint256);
     
     function ownerOf(uint256 ID) external view returns(address);
-    
+        
     function aboutNFT(uint256 ID) external view returns(string memory name, string memory symbol, address owner, uint256 category, uint256 level, uint256 boxed1, uint256 boxed2, uint256 x, uint256 y, string memory more);
     
     function boxedNFTs(uint256 ID) external view returns(uint256);
@@ -79,6 +79,7 @@ contract NFT is INFT{
     mapping(uint256 => string) private _name;
     mapping(uint256 => string) private _symbol;
     mapping(uint256 => address) private _owner;
+    mapping(address => mapping(uint256 => bool)) private _inventory;
     mapping(uint256 => uint256) private _category;
     
     mapping(uint256 => uint256) private _NGLbalance;
@@ -152,8 +153,10 @@ contract NFT is INFT{
         require(from == msg.sender || _allowance[from][msg.sender][tokenId]);
         if(_allowance[from][msg.sender][tokenId]){_allowance[from][msg.sender][tokenId] = false;}
         _balances[from] -= 1;
+        delete _inventory[from][tokenId];
         _balances[to] += 1;
         _owner[tokenId] = to;
+        _inventory[to][tokenId] = true;
     }
     
     function safeTransferFrom(address from, address to, uint256 tokenId) external override {
@@ -161,8 +164,10 @@ contract NFT is INFT{
         require(from == msg.sender || _allowance[from][msg.sender][tokenId]);
         if(_allowance[from][msg.sender][tokenId]){_allowance[from][msg.sender][tokenId] = false;}
         _balances[from] -= 1;
+        delete _inventory[from][tokenId];
         _balances[to] += 1;
         _owner[tokenId] = to;
+        _inventory[to][tokenId] = true;
     }
     
     function approve(address to, uint256 tokenId) external override {
@@ -195,6 +200,7 @@ contract NFT is INFT{
         require(_owner[ID] == msg.sender);
         _owner[ID] = address(0);
         _balances[msg.sender] -= 1;
+        delete _inventory[msg.sender][ID];
     }
     
     function setlevelsPrices(uint256 ID, uint256 level1, uint256 level2, uint256 level3, uint256 level4, uint256 level5, uint256 level6, uint256 level7, uint256 level8, uint256 level9, uint256 level10) external override {
@@ -263,6 +269,8 @@ contract NFT is INFT{
         _owner[tokenID] = address(0);
         _owner[tokenID1] = address(0);
         _balances[msg.sender] -= 1;
+        delete _inventory[msg.sender][tokenID];
+        delete _inventory[msg.sender][tokenID1];
         uint256 nft =  MintNFT(_forgeName[tokenID][tokenID1], _forgeSymbol[tokenID][tokenID1], msg.sender, _forgeEquation[tokenID][tokenID1], 0, ""); 
         _boxed1[nft] = tokenID;
         _boxed2[nft] = tokenID1;
@@ -288,6 +296,7 @@ contract NFT is INFT{
         _more[nft] = more;
         ++_NFTcount;
         ++_balances[owner];
+        _inventory[owner][nft] = true;
         return nft;
     }
  //   function boxNFT(uint256 NFT, uint256 ToBeBoxedNFT) external{}
