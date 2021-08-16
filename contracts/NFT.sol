@@ -11,6 +11,8 @@ interface IERC20{
 }
 
 interface INFT{
+    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
+
     
     function balanceOf(address user) external view returns(uint256);
     
@@ -154,6 +156,7 @@ contract NFT is INFT{
         _balances[from] -= 1;
         _balances[to] += 1;
         _owner[tokenId] = to;
+        emit Transfer(from, to, tokenId);
     }
     
     function safeTransferFrom(address from, address to, uint256 tokenId) external override {
@@ -163,6 +166,7 @@ contract NFT is INFT{
         _balances[from] -= 1;
         _balances[to] += 1;
         _owner[tokenId] = to;
+        emit Transfer(from, to, tokenId);
     }
     
     function approve(address to, uint256 tokenId) external override {
@@ -288,6 +292,7 @@ contract NFT is INFT{
         _more[nft] = more;
         ++_NFTcount;
         ++_balances[owner];
+        emit Transfer(address(0), owner, nft);
         return nft;
     }
  //   function boxNFT(uint256 NFT, uint256 ToBeBoxedNFT) external{}

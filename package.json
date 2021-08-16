@@ -4,6 +4,10 @@
     "bignumber.js": "^9.0.1",
     "chai": "^4.3.4",
     "hardhat": "^2.6.0",
+    "rm": "^0.1.8",
     "web3": "^1.5.1"
+  },
+  "devDependencies": {
+    "@types/web3": "^1.2.2"
   }
 }
