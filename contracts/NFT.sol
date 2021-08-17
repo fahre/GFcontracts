@@ -199,6 +199,7 @@ contract NFT is INFT{
         require(_owner[ID] == msg.sender);
         _owner[ID] = address(0);
         _balances[msg.sender] -= 1;
+        emit Transfer(msg.sender, address(0), ID);
     }
     
     function setlevelsPrices(uint256 ID, uint256 level1, uint256 level2, uint256 level3, uint256 level4, uint256 level5, uint256 level6, uint256 level7, uint256 level8, uint256 level9, uint256 level10) external override {
@@ -267,6 +268,8 @@ contract NFT is INFT{
         _owner[tokenID] = address(0);
         _owner[tokenID1] = address(0);
         _balances[msg.sender] -= 1;
+        emit Transfer(msg.sender, address(0), tokenID);
+        emit Transfer(msg.sender, address(0), tokenID1);
         uint256 nft =  MintNFT(_forgeName[tokenID][tokenID1], _forgeSymbol[tokenID][tokenID1], msg.sender, _forgeEquation[tokenID][tokenID1], 0, ""); 
         _boxed1[nft] = tokenID;
         _boxed2[nft] = tokenID1;
@@ -276,10 +279,13 @@ contract NFT is INFT{
     function unForge(uint256 tokenID) external override returns(uint256 token1, uint256 token2){
         require(_owner[tokenID] == msg.sender);
         _owner[tokenID] = address(0);
+        emit Transfer(msg.sender, address(0), tokenID);
         token1 = _boxed1[tokenID];
         token2 = _boxed2[tokenID];
         _owner[token1] = msg.sender;
         _owner[token2] = msg.sender;
+        emit Transfer(address(0), _owner[token1], token1);
+        emit Transfer(address(0), _owner[token2], token2);
     }
     
     function MintNFT(string memory name, string memory symbol, address owner, uint256 category, uint256 level, string memory more) internal returns(uint256) {
