@@ -13,6 +13,7 @@ interface IERC20{
 interface INFT{
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
 
+    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
     
     function balanceOf(address user) external view returns(uint256);
     
@@ -172,6 +173,7 @@ contract NFT is INFT{
     function approve(address to, uint256 tokenId) external override {
         require(msg.sender == _owner[tokenId]);
         _allowance[msg.sender][to][tokenId] = true;
+        emit Approval(_owner[tokenId], to, tokenId);
     }
     
     function editCategory(uint256 category, bool destructable) external override {
