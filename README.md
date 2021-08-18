@@ -1,8 +1,23 @@
-
-
 # READ ME
 
-## Deployed to testnet
+## Dev
+
+```
+# Start a node
+npx hardhat node
+
+# Run test on another tab
+npx hardhat test
+
+```
+
+## Scripts
+
+```
+npx hardhat run scripts/mint-script.js --network matic
+```
+
+## Deployed to Polygon testnet (Mumbai)
 
 NGL token deployed to: [0xD765BF2752ba842Bf4e23326394d1478219AEE2d](https://mumbai.polygonscan.com/address/0xD765BF2752ba842Bf4e23326394d1478219AEE2d)
 
