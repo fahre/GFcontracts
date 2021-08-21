@@ -1,9 +1,20 @@
 {
+  "scripts": {
+    "prettier": "prettier --write 'contracts/**/*.sol'"
+  },
   "dependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "bignumber.js": "^9.0.1",
     "chai": "^4.3.4",
     "hardhat": "^2.6.0",
-    "web3": "^1.5.1"
+    "rm": "^0.1.8"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-truffle5": "^2.0.0",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "@types/web3": "^1.2.2",
+    "prettier": "^2.3.2",
+    "prettier-plugin-solidity": "^1.0.0-beta.17",
+    "web3": "^1.5.2"
   }
 }
