@@ -58,6 +58,7 @@ contract ERC20 is IERC20{
         _symbol = symbol_;
         _totalSupply = totalSupply;
         _balances[msg.sender] = totalSupply;
+        emit Transfer(address(0), msg.sender, totalSupply);
     }
 
     function name() external view override returns (string memory) {
@@ -88,6 +89,7 @@ contract ERC20 is IERC20{
     function transfer(address recipient, uint256 amount) external override returns (bool) {
         _balances[msg.sender] -= amount;
         _balances[recipient] += amount;
+        emit Transfer(msg.sender, recipient, amount);
         return true;
     }
 
@@ -145,6 +147,7 @@ contract ERC20 is IERC20{
         _totalSupply -= amount;
         
         emit Burn(msg.sender, amount);
+        emit Transfer(msg.sender, address(0), amount);
         
         return true;
 
